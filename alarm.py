@@ -42,6 +42,7 @@ def input_destination(user_input):
         main()
 
 def main():
+    # This runs the main code
     print("What is the unit of time do you want to wait?\n (1)Hours (2)Minutes (3)Seconds (4)Combination")
     main_input = int(input(": "))
 
