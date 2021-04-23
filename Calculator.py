@@ -1,5 +1,5 @@
 from tkinter import *
-
+from PIL import ImageTk
 
 def click(num):
     global oper
@@ -21,11 +21,13 @@ def equals():
         text.set(ans)
     except ZeroDivisionError:
         text.set("ZERO DIVISION ERROR")
-    
+
 
 window = Tk()
 
 window.wm_title("Calculator")
+icon = ImageTk.PhotoImage(file='Calc_icon.png')
+window.iconphoto(False, icon)
 
 oper = ''
 text = StringVar()
