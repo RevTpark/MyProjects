@@ -21,6 +21,8 @@ def equals():
         text.set(ans)
     except ZeroDivisionError:
         text.set("ZERO DIVISION ERROR")
+    except SyntaxError:
+        text.set("INVALID SYNTAX")
 
 
 window = Tk()
@@ -28,6 +30,7 @@ window = Tk()
 window.wm_title("Calculator")
 icon = ImageTk.PhotoImage(file='Calc_icon.png')
 window.iconphoto(False, icon)
+window.maxsize(300, 340)
 
 oper = ''
 text = StringVar()
