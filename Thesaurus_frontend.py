@@ -7,10 +7,20 @@ from tkinter import messagebox
 data = json.load(open('data.json'))
 
 
+# Validating the entry as strings and not nums
+def callback(entry):
+    if entry.isalpha():
+        return True
+    elif entry == '':
+        return True
+    else:
+        return False
+
+
 def output_set(li):
     list1.delete('1.0', END)
     for c, item in enumerate(li):
-        list1.insert(INSERT, str(c) + '] ' + item + '\n')
+        list1.insert(INSERT, str(c+1) + '] ' + item + '\n')
 
 
 def translate(w):
@@ -64,5 +74,8 @@ list1.grid(row=2, column=0, rowspan=5, columnspan=5)
 
 b2 = Button(window, text='Exit', fg='red', command=exit_, width=15)
 b2.grid(row=7, column=4, columnspan=5)
+
+reg = window.register(callback)
+e1.config(validate="key", validatecommand=(reg, "%P"))
 
 window.mainloop()
