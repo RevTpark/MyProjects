@@ -2,6 +2,15 @@ from tkinter import *
 from PIL import ImageTk
 
 
+def callback(entry):
+    if entry.isdigit():
+        return True
+    elif entry == '':
+        return True
+    else:
+        return False
+
+
 def click(num):
     global oper
     oper = oper + str(num)
@@ -107,5 +116,8 @@ b14.grid(row=4, column=3)
 b15 = Button(window, text="/", command=lambda: click('/'), padx=27, pady=10,
              font=('arial', 15, 'bold'))
 b15.grid(row=5, column=3)
+
+reg = window.register(callback)
+e1.config(validate='key', validatecommand=(reg, '%P'))
 
 window.mainloop()
