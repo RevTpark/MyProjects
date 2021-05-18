@@ -1,0 +1,301 @@
+<Homepage>:
+    GridLayout:
+        cols: 1
+        GridLayout:
+            cols: 1
+            padding: 50, 50
+            spacing: 30, 30
+            Label:
+                text: "Translator App"
+                bold: True
+                font_size: "50sp"
+                color: "#FF00FF"
+            Button:
+                text: "Quick Translate"
+                on_press: root.direct_translate()
+                background_color: 1, 1, 1, 0
+                opacity: 1 if self.state == "normal" else 0.5
+                color: 0.1 , 0.7, 1, 1
+                font_size: "20sp"
+                underline: True
+                bold: True
+
+            Button:
+                text: "Go to Login Page"
+                on_press: root.login()
+                background_color: 1, 1, 1, 0
+                opacity: 1 if self.state == "normal" else 0.5
+                color: 0.1 , 0.7, 1, 1
+                font_size: "20sp"
+                bold: True
+
+<LoginPage>:
+    GridLayout:
+        cols:1
+        padding: 20, 20
+        GridLayout:
+            cols: 1
+            spacing: 20, 20
+            Label:
+                text: "User Login"
+                bold: True
+                font_size: "30sp"
+            TextInput:
+                id: username
+                hint_text: "Username"
+                font_size: 20
+            TextInput:
+                id: password
+                hint_text: "Password"
+                font_size: 20
+                password: True
+            RelativeLayout:
+                Button:
+                    text: "Submit"
+                    on_press: root.login(root.ids.username.text, root.ids.password.text)
+                    size_hint: 0.3, 0.8
+                    pos_hint: {"center_x": 0.5, "center_y": 0.1}
+            Label:
+                id: login_wrong
+                text: ""
+                color: "#FF0000"
+                bold: True
+                font_size: "20sp"
+        GridLayout:
+            cols: 2
+            size_hint: 0.3, 0.3
+            Button:
+                text: "Forgot Password?"
+                on_press: root.forgot()
+                background_color: 1, 1, 1, 0
+                color: 0.1 , 0.7, 1, 1
+            Button:
+                text: "Sign Up"
+                on_press: root.sign_up()
+                background_color: 1, 1, 1, 0
+                color: 0.1 , 0.7, 1, 1
+
+        RelativeLayout:
+            cols: 1
+            size_hint: 0.2, 0.2
+            Button:
+                text: "Home"
+                on_press: root.to_home()
+                size_hint: 0.4, 0.6
+                pos_hint: {"center_x": 0.5, "center_y": 0.1}
+                background_color: 1, 1, 1, 0
+                font_size: "25sp"
+
+<ForgotPassword>:
+    GridLayout:
+        cols: 1
+        padding: 30, 30
+        spacing: 30, 30
+        Label:
+            text: "Reset password"
+        TextInput:
+            id: username
+            hint_text: "Enter valid Username"
+        TextInput:
+            id: password
+            hint_text: "Enter new password"
+        TextInput:
+            id: repassword
+            hint_text: "Re-enter password"
+        Label:
+            id: incorrect
+            text: ""
+            color: "#FF0000"
+            bold: True
+            font_size: "20sp"
+        RelativeLayout:
+            Button:
+                text: "Set"
+                on_press: root.set_pass(root.ids.username.text, root.ids.password.text, root.ids.repassword.text)
+                size_hint: 0.3, 1
+                pos_hint: {"center_x": 0.5, "center_y": 1}
+
+<ForgotPasswordSuccess>:
+    GridLayout:
+        cols: 1
+        padding: 30, 30
+        spacing: 30, 30
+        Label:
+            text: "Password was successfully reset!"
+            color: 0, 128, 0
+            font_size: "35sp"
+            outline_color: 255, 255, 255
+            outline_width: 20
+            bold: True
+        Button:
+            text: "Login Page"
+            on_press: root.go_to_login()
+            background_color: 1, 1, 1, 0
+            opacity: 1 if self.state == "normal" else 0.5
+            color: 0.1 , 0.7, 1, 1
+            font_size: "20sp"
+
+<SignUpScreen>:
+    GridLayout:
+        cols: 1
+        padding: 20, 20
+        spacing: 20, 20
+        Label:
+            text: "Sign up to use exciting new features!!"
+        TextInput:
+            id: username
+            hint_text: "New Username"
+        TextInput:
+            id: password
+            hint_text: "New Password"
+            password: True
+        Label:
+            id: input_error
+            text: ""
+        RelativeLayout:
+            Button:
+                text: "Submit"
+                on_press: root.add_user(root.ids.username.text, root.ids.password.text)
+                size_hint: 0.3, 0.5
+                pos_hint: {"center_x": 0.8, "center_y": 0.5}
+
+<SignUpScreenSuccess>:
+    GridLayout:
+        cols: 1
+        padding: 20, 20
+        spacing: 20, 20
+        Label:
+            text: "Sign up success!!"
+            color: 3, 252, 194
+            font_size: "35sp"
+            bold: True
+        Button:
+            text: "Login page"
+            on_press: root.login_page()
+            background_color: 1, 1, 1, 0
+            opacity: 1 if self.state == "normal" else 0.5
+            color: 0.1 , 0.7, 1, 1
+            font_size: "20sp"
+
+<TranslatorPage>
+    GridLayout:
+        cols: 1
+        padding: 20, 20
+        spacing: 20, 20
+        GridLayout:
+            cols: 1
+            RelativeLayout
+                Button:
+                    text: "Logout"
+                    on_press: root.logout()
+                    background_color: 1, 1, 1, 0
+                    color: 0.1 , 0.7, 1, 1
+                    pos_hint: {"center_x": 0.9, "center_y": 0.5}
+            Label:
+                text: "Enter english words to get translations"
+                font_size: "25sp"
+        GridLayout:
+            cols: 2
+            size_hint: 0.5, 0.4
+            TextInput:
+                id: given_word
+                hint_text: "Enter word here"
+                font_size: "20sp"
+            Spinner:
+                id: spinner
+                text: "Translate to:"
+                values: ["Spanish", "Dutch", "French", "German", "Irish", "Latin", "Turkish","vietnamese"]
+                on_text: root.translate(root.ids.given_word.text, root.ids.spinner.text)
+
+        GridLayout:
+            cols: 1
+            Label:
+                id: translated_text
+                text: "Translated text here"
+                font_size: "25sp"
+                color: "#FFD700"
+        GridLayout:
+            cols: 3
+            size_hint: 0.5, 0.5
+            padding: 20, 20
+            Button:
+                text: "Add to Favourites"
+                on_press: root.add_fav(root.ids.given_word.text, root.ids.spinner.text, root.ids.translated_text.text)
+                color: "#00ff00"
+                background_color: 1, 1, 1, 0
+                bold: True
+            Button:
+                text: "Check Favourites"
+                on_press: root.to_fav()
+                color: "#382f9c"
+                background_color: 1, 1, 1, 0
+                bold: True
+            Button:
+                text: "Reset Favourites"
+                on_press: root.reset()
+                color: "#c70404"
+                background_color: 1, 1, 1, 0
+                bold: True
+
+<CheckFavourites>:
+    GridLayout:
+        cols: 1
+        Label:
+            text: "My Favourites"
+            color: "#382f9c"
+            font_size: "25sp"
+            bold: True
+        ScrollView:
+            Label:
+                id: show_fav
+                text: ""
+                size_hint_y: None
+                height: self.texture_size[1]
+                font_size: "15sp"
+
+        RelativeLayout:
+            Button:
+                text: "Back"
+                on_press: root.go_back()
+                size_hint: 0.2, 0.2
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+<Pop>:
+    Label:
+        id: varied
+        text: ""
+        size_hint: 0.6,0.2
+        pos_hint: {"x": 0.2, "top": 1}
+
+<WarningPop>:
+    Label:
+        text: "You are not currently logged in! Login instead?"
+        size_hint: 0.6,0.2
+        pos_hint: {"x": 0.2, "top": 0.8}
+
+
+<RootWidget>:
+    Homepage:
+        name: "homepage"
+
+    LoginPage:
+        name: 'login_page'
+
+    ForgotPassword:
+        name: 'forgot_password'
+
+    ForgotPasswordSuccess:
+        name: 'forgot_password_success'
+
+    SignUpScreen:
+        name: 'sign_up'
+
+    SignUpScreenSuccess:
+        name: 'sign_up_success'
+
+    TranslatorPage:
+        name: 'translator_page'
+
+    CheckFavourites:
+        name: 'check_favourites'
+
