@@ -1,6 +1,7 @@
 from tkinter import *
 from PIL import ImageTk
 
+# Backend
 
 def callback(entry):
     if entry.isdigit():
@@ -34,6 +35,8 @@ def equals():
     except SyntaxError:
         text.set("INVALID SYNTAX")
 
+
+# FrontEnd
 
 window = Tk()
 
